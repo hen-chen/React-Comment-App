@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react'
- 
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
 import Title from './components/Title'
 import NewPost from './components/NewPost'
-import Posts from './components/Posts'
-import './App.css'
+import Post from './components/Post'
 
 const App = () => {
   const [posts, setPosts] = useState([])
   return (
     <>
-      <div className="center">
+      <div className="container">
         <Title />
-        <NewPost setPosts={setPosts} posts={posts}/>
-        <Posts posts={posts}/>
+        <h2><u> Write a new Post! </u></h2>
+        <NewPost setPosts={setPosts} posts={posts} />
+        <br />
+        <h2><u> FEED </u></h2>
+        {posts.map(post => <Post {...post} key={uuidv4()} />)}
       </div>
     </>
   )
